@@ -1,0 +1,2 @@
+module NonLoginsHelper
+end
