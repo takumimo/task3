@@ -9,8 +9,6 @@ Rails.application.routes.draw do
   get "about" => "homes#about"
   get "top" => "homes#top"
   root to: "homes#top"
-  resources :users, only: [:index, :show]
-  resources :homes, only: [:new, :create, :index, :show]
-  post 'submits' => 'users#create'
-  get 'submits' => 'users#show'
+  resources :users, only: [:index, :show, :edit]
+  
 end
