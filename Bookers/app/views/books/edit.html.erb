@@ -1,3 +1,5 @@
+Editing Book
+
 <div class="body-wrap">
   <div id="st-container" class="st-container">
     <div class="st-pusher">
@@ -13,24 +15,17 @@
                     </div>
                     <div class="form-body">
                       <!-- ここにform_forを追加します -->
-                      <%= form_for(@user) do |f| %>
-                        <div class="form-group has-icon">
-                          <label class="control-label sr-only" for="inputEmail">Name</label>
-                          <%= f.text_field :name, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"名前"%>
+                      <%= form_for(@book) do |f| %>
+                        <div class="form-group　book-edit">
+                          <label class="control-label sr-only" for="inputEmail">Title</label>
+                          <%= f.text_field :title, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"タイトル"%>
                           <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
                         </div>
-                        <div class="form-group has-icon">
-                          <div class="user-edit-image">
-                            <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg"%>
-                          </div>
-                          <label class="control-label sr-only" for="inputEmail">ProfileImage</label>
-                          <%= f.attachment_field :profile_image, placeholder: "プロフィール画像", class: "user-edit-form" %>
-
-                        </div>
-                        <div class="form-group has-icon">
-                          <label class="control-label sr-only" for="inputEmail">Introduction</label>
-                          <%= f.text_area :introduction, autofocus: true, class:"form-control", id:"inputEmail"%>
+                        <div class = form-group book-edit>
+                        	<label class="control-label sr-only" for="inputEmail">Opinion</label>
+                          <%= f.text_area :body, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"オピニオン"%>
                           <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
+                        	
                         </div>
                         <%= f.submit "変更を保存", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
                       <% end %>
