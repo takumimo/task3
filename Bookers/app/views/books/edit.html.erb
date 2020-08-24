@@ -35,7 +35,6 @@ Editing Book
                         	<label class="control-label sr-only" for="inputEmail">Opinion</label>
                           <%= f.text_area :body, autofocus: true, class:"form-control", id:"inputEmail", placeholder:"オピニオン"%>
                           <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
-                        	
                         </div>
                         <%= f.submit "Update Book", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
                         <p><%= link_to 'Show', book_path(@book) %></p>

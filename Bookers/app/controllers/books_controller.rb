@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  #before_action :logged_in_user, only: [:edit, :update]
 	before_action :authenticate_user!
   #before_action :set_book
 	def create
@@ -16,7 +17,7 @@ class BooksController < ApplicationController
 
 	def show
     @book = Book.find(params[:id])
-    @user = User.new
+    @user = current_user
   end
 
   #def set_book
@@ -25,9 +26,13 @@ class BooksController < ApplicationController
   #end
 
   def index
+    #@user = User.find[:id]
+    #@book = Book.new
+    #@books = @user.books
     @books = Book.all
     @book = Book.new
     @user = current_user
+    
   end
 
   def edit
@@ -57,7 +62,14 @@ class BooksController < ApplicationController
 
 	private
   def book_params
-  	params.require(:book).permit(:title,:body)
+  	params.require(:book).permit(:title,:body, :user_id)
   end
+
+  #def logged_in_user
+      #unless logged_in?
+        #flash[:danger] = "Please log in."
+        #redirect_to login_url
+      #end
+  #end
 
 end
