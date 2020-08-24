@@ -29,7 +29,7 @@
           <%= link_to "Books", books_path(@book) %>
         </li>
         <li class="nav-item">
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          <%= link_to "logout", destroy_user_session_path, method: :delete %>
         </li>
          </ul>
        </div>
@@ -41,7 +41,7 @@
         
     <% else %>
       <li class="">
-        <%= link_to "Home", top_path %>
+        <%= link_to "Home", root_path %>
         <%= link_to "About", home_about_path %>
         <%= link_to "sign up", new_user_registration_path %>
       

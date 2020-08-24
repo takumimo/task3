@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   
   resources :books, only: [:new, :create, :index, :show, :edit, :update, :destroy]
   get "home/about" => "homes#about"
-  get "top" => "homes#top"
   root to: "homes#top"
   resources :users, only: [:index, :show, :edit, :update]
   

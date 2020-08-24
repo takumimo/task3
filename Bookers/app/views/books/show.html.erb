@@ -7,8 +7,10 @@ Book detail
 				<td><%= link_to image_tag('no_image.jpg'), user_path(current_user.id) %></td>
 				<td><%= @book.title %></td>
 				<td><%= @book.body %></td>
-				<td><%= link_to 'Edit',edit_book_path(@book) %></td>
-				<td><%= link_to 'Destroy',book_path(@book), method: :delete %></td>
+				<% if @user == current_user %>
+					<td><%= link_to 'Edit',edit_book_path(@book) %></td>
+					<td><%= link_to 'Destroy',book_path(@book), method: :delete %></td>
+				<% end %>
 			</tr>
 		
 	</tbody>
