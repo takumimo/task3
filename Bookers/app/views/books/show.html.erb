@@ -1,8 +1,8 @@
 <div class = "row">
-	<%= render 'books/common_book' ,user:@user,book:@book %>
+	<%= render 'books/common_book' ,user:@user,book:Book.new %>
 	<div class = "col-xs-9">
-		<p>Book detail</p>
-		<table>
+		<h2>Book detail</h2>
+		<table class = "table">
 			<tbody>
 				<tr>
 					<td><%= link_to user_path(@book.user) do %>
@@ -20,11 +20,9 @@
 			</tbody>
 
 		</table>
-		
 			<%= link_to user_path(@book.user) do %>
 				<%= @book.user.name  %>
 			<% end %>
-		
 	</div>
 </div>
 

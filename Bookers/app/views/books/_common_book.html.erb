@@ -1,35 +1,34 @@
-
-    
-    
-      
-          <div class="col-xs-3">
-            <div class="sidebar_content">
-              <h2>User info</h2>
-              <%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img pull-left profile-img", fallback: "no_image.jpg" %>
-            　<table class="profile-name">
-                <tbody>
-                  <tr>
-                    <td>name</td>
-                    <td><%= user.name %></td>
-                  </tr>
-                  <tr>
-                    <td>introduction</td>
-                    <td><%= user.introduction %></td>
-                  </tr>
-                </tbody>
-              </table>
-            <% if user.id == current_user.id %>
-              <p><%= link_to "プロフィール編集", edit_user_path(user) %></p>
-            <% end %>
-            <%= form_for(book,url: books_path) do |f| %>
-              <h2>New book</h2>
-              <h4>Title</h4>
-              <%= f.text_field :title %>
-                <h4>Opinion</h4>
-              <%= f.text_area :body %>
-              <%= f.submit  %>
-            <% end %>
+<div class="col-xs-3">
+  <h2>User info</h2>
+  <%= attachment_image_tag user, :profile_image, :fill, 60, 60,fallback: "no_image.jpg" %>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>name</th>
+          <th><%= user.name %></th>
+        </tr>
+        <tr>
+          <th>introduction</th>
+          <th><%= user.introduction %></th>
+        </tr>
+      </tbody>
+    </table>
+    <% if user.id == current_user.id %>
+      <%= link_to edit_user_path(user) do %>
+      <span class = "text-center well glyphicon glyphicon-wrench col-xs-12" aria-hidden="true"></span>
+      <% end %>
+    <% end %>
+    <%= form_for(book,url: books_path) do |f| %>
+      <h2>New book</h2>
+      <h4>Title</h4>
+        <%= f.text_field :title,class: "col-xs-12" %>
+        <div style = "margin-top: 40px;">
+          <h4>Opinion</h4>
         </div>
-      
-      </div>
-    
+          <%= f.text_area :body,class: "col-xs-12" %>
+        <br>
+        <div  style = "margin-top: 40px;">
+          <%= f.submit class:"btn btn-primary col-xs-12" %>
+        </div>
+    <% end %>
+</div>
