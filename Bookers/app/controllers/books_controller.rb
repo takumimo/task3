@@ -1,7 +1,5 @@
 class BooksController < ApplicationController
-  #before_action :logged_in_user, only: [:edit, :update]
 	before_action :authenticate_user!
-  #before_action :set_book
 	def create
   	@book = Book.new(book_params)
   	@book.user_id = current_user.id
@@ -21,15 +19,8 @@ class BooksController < ApplicationController
     @books = Book.all
   end
 
-  #def set_book
-   # @book = Book.find(params[:id])
-   # redirect_to (user_url(current_user)) unless params[:id] == current_user.id
-  #end
 
   def index
-    #@user = User.find[:id]
-    #@book = Book.new
-    #@books = @user.books
     @books = Book.all
     @book = Book.new
     @user = current_user
@@ -64,12 +55,5 @@ class BooksController < ApplicationController
   def book_params
   	params.require(:book).permit(:title,:body, :user_id)
   end
-
-  #def logged_in_user
-      #unless logged_in?
-        #flash[:danger] = "Please log in."
-        #redirect_to login_url
-      #end
-  #end
 
 end
