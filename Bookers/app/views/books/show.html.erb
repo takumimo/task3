@@ -1,3 +1,4 @@
+
 <div class = "row">
 	<%= render 'books/common_book' ,user:@user,book:Book.new %>
 	<div class = "col-xs-9">
@@ -18,14 +19,29 @@
 						<td><%= link_to 'Edit',edit_book_path(@book) %></td>
 						<td><%= link_to 'Destroy',book_path(@book), method: :delete, data: {confirm: "本当に消しますか" } %></td>
 					<% end %>
+					<!-- いいね機能 -->
+					<% if @book.favorited_by?(current_user) %>
+					<td>
+						<%= link_to book_favorite_path(@book), method: :delete do %>
+							<i class="fas fa-heart" style="color: red"></i>
+							<%= @book.favorites.count %>
+						<% end %>
+					</td>
+					<% else %>
+					<td>
+						<%= link_to book_favorites_path(@book), method: :post do %>
+							<i class="fal fa-heart"></i>
+							<%= @book.favorites.count %>
+						<% end %>
+					</td>
+					<% end %>
+					<!-- いいね機能 -->
 					<td><%= "コメント数：#{@book.book_comments.count}" %></td>
 				</tr>
 
 			</tbody>
 		</table>
-		
-			
-		
+		<!-- コメント一覧　-->
 		<table>
 			<tbody>
 				<% @book.book_comments.each do |book_comment| %>
@@ -36,10 +52,7 @@
 						<% end %>
 						<br>
 						<%= link_to book_comment.user.name,user_path(book_comment.user)  %>
-							
-					
 					</td>
-					
 					<td><%= book_comment.comment %></td>
 					<td>
 						<% if book_comment.user == current_user %>
@@ -47,11 +60,10 @@
 						<% end %>
 					</td>
 				</tr>
-				
 				<% end %>
 			</tbody>
-			
 		</table>
+		<!-- コメント一覧 -->
 		<div>
 			<%= form_for [@book, @book_comment] do |f| %>
 			    <%= f.text_area :comment %>
