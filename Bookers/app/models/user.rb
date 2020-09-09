@@ -11,21 +11,23 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { minimum: 2 , maximum: 20 }
   validates :introduction, length: {maximum: 50 }
 
-  has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  has_many :following_user, through: :follower, source: :followed
-  has_many :follower_user, through: :followed, source: :follower
+  has_many :active_relationships, class_name: "Relationship",foreign_key:"follower_id",dependent: :destroy
+  has_many :following, through: :active_relationships, source: :followed
 
-  def follow
-    follower.create(followed_id:user_id)
+  has_many :passive_relationships, class_name: "Relationship",foreign_key:"followed_id",dependent: :destroy
+  has_many :followers, through: :passive_relationships, source: :follower
+
+  def following?(other_user)
+    following.include?(other_user)
   end
 
-  def unfollow
-    follower.find_by(followed_id:user_id).destroy
+  def follow(other_user)
+    following << other_user
   end
 
-  def following?(user)
-    following_user.include?(user)
+  def unfollow(other_user)
+    active_relationships.find_by(followed_id: other_user.id).destroy
   end
+  
 end
 

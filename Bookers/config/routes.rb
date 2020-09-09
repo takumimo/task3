@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   get "home/about" => "homes#about"
   root to: "homes#top"
   resources :users, only: [:index, :show, :edit, :update]
-  post 'follow/:id' => 'relationships#follow', as: 'follow'
-  post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :relationships, only: [:create, :destroy]
 end
