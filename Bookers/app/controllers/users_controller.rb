@@ -47,7 +47,6 @@ before_action :authenticate_user!
       @users = User.find(params[:id]).followers
    end
 
-
   private
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)

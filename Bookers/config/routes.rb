@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search/search'
   devise_for :users, controllers:{
   	sessions: 'devise/sessions',
   	registrations: 'devise/registrations'
@@ -19,4 +20,5 @@ Rails.application.routes.draw do
     end
   end
   resources :relationships, only: [:create, :destroy]
+  get "search" => "search#search"
 end
