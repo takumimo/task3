@@ -32,21 +32,11 @@
 						<td><%= link_to book.title, book_path(book) %></td>
 						<td><%= book.body %></td>
 						<!-- いいね機能 -->
-						<% if book.favorited_by?(current_user) %>
 						<td>
-							<%= link_to book_favorites_path(book), method: :delete do %>
-								<i class="fas fa-heart" style="color: red"></i>
-								<%= book.favorites.count %>
-							<% end %>
+							<div id="favorites_buttons_<%= book.id %>">
+								<%= render 'favorites/favorite', book: book %>
+							</div>
 						</td>
-						<% else %>
-						<td>
-							<%= link_to book_favorites_path(book), method: :post do %>
-								<i class="far fa-heart"></i>
-								<%= book.favorites.count %>
-							<% end %>
-						</td>
-						<% end %>
 						<!-- いいね機能 -->
 						<td><%= "コメント数：#{book.book_comments.count}" %></td>
 					</tr>
